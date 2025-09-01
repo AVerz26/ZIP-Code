@@ -7,7 +7,7 @@ from io import BytesIO
 
 st.title("Zip Codes Finder")
 
-c, d = st.columns(3,1)
+c, d = st.columns([3,1])
 # Input múltiplo de cidades
 with c:
     cities_input = st.text_area("Enter city names (one per line):")
@@ -133,6 +133,7 @@ if st.button("Get Zip Codes"):
             st.dataframe(final_df)
     else:
         st.warning("Nenhum zip code encontrado.")
+
 
 
 
