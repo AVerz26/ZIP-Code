@@ -7,6 +7,7 @@ from io import BytesIO
 
 st.title("Zip Codes Finder")
 
+
 # Input múltiplo de cidades
 cities_input = st.text_area("Enter city names (one per line):")
 radius = st.number_input("Enter the radius (miles):", min_value=1, value=20)
@@ -109,22 +110,25 @@ if st.button("Get Zip Codes"):
         final_df = pd.DataFrame(all_data)
 
         st.write(f'Total found zip codes: {len(final_df)}')
-
-        st.map(df_map)
-
-            # Salva em excel direto na memória
-        output = BytesIO()
-        with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
-            final_df.to_excel(writer, index=False)
-        output.seek(0)
-
-        st.download_button(
-            label="Download File",
-            data=output,
-            file_name="data_formatted.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            )
-
-        st.dataframe(final_df)
+        a, b = st.columns()
+        with a:
+            st.map(df_map)
+    
+                # Salva em excel direto na memória
+        with b:
+            output = BytesIO()
+            with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+                final_df.to_excel(writer, index=False)
+            output.seek(0)
+    
+            st.download_button(
+                label="Download File",
+                data=output,
+                file_name="data_formatted.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                )
+    
+            st.dataframe(final_df)
     else:
         st.warning("Nenhum zip code encontrado.")
+
