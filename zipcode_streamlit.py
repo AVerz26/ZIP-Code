@@ -110,7 +110,7 @@ if st.button("Get Zip Codes"):
         final_df = pd.DataFrame(all_data)
 
         st.write(f'Total found zip codes: {len(final_df)}')
-        a, b = st.columns()
+        a, b = st.columns(2)
         with a:
             st.map(df_map)
     
@@ -131,4 +131,5 @@ if st.button("Get Zip Codes"):
             st.dataframe(final_df)
     else:
         st.warning("Nenhum zip code encontrado.")
+
 
