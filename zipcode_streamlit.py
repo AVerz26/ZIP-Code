@@ -7,10 +7,12 @@ from io import BytesIO
 
 st.title("Zip Codes Finder")
 
-
+c, d = st.columns(3,1)
 # Input múltiplo de cidades
-cities_input = st.text_area("Enter city names (one per line):")
-radius = st.number_input("Enter the radius (miles):", min_value=1, value=20)
+with c:
+    cities_input = st.text_area("Enter city names (one per line):")
+with d:
+    radius = st.number_input("Enter the radius (miles):", min_value=1, value=20)
 
 df_princ = []
 
@@ -131,5 +133,6 @@ if st.button("Get Zip Codes"):
             st.dataframe(final_df)
     else:
         st.warning("Nenhum zip code encontrado.")
+
 
 
